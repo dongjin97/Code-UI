@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-class ViewController: UIViewController {
+class ExTableVC: UIViewController {
     var tableView : UITableView = {
        let tableView = UITableView()
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identi)
@@ -30,14 +30,14 @@ class ViewController: UIViewController {
         }
     }
 }
-extension ViewController {
+extension ExTableVC {
     private func configure() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 100
     }
 }
-extension ViewController : UITableViewDataSource,UITableViewDelegate{
+extension ExTableVC : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identi, for: indexPath) as! TableViewCell
 
@@ -50,19 +50,19 @@ extension ViewController : UITableViewDataSource,UITableViewDelegate{
 }
 import SwiftUI
 @available(iOS 13.0.0, *)
-struct ViewControllerRepresentable: UIViewControllerRepresentable {
-    typealias UIViewControllerType = ViewController
+struct ExTableVCRepresentable: UIViewControllerRepresentable {
+    typealias ExTableVCType = ExTableVC
     
-    func makeUIViewController(context: Context) -> ViewController {
-        return ViewController()
+    func makeUIViewController(context: Context) -> ExTableVC {
+        return ExTableVC()
     }
     
-    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: ExTableVC, context: Context) {
     }
 }
 struct ViewPreview: PreviewProvider {
     static var previews: some View {
-        ViewControllerRepresentable()
+        ExTableVCRepresentable()
             .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
             .previewDisplayName("iPhone 14 Pro")
     }
